@@ -93,26 +93,26 @@ void initsnack()
 
 void createfood()
 {
-    snack *food_temp;    
-    food_temp = (snack *)malloc(sizeof(snack));
-    food_temp->x = rand() % 52 + 2;
-    while ((food_temp->x % 2) != 0)
+    snack *tem_food,*ss;    
+    tem_food = (snack *)malloc(sizeof(snack));
+    tem_food->x = rand() % 52 + 2;
+    while ((tem_food->x % 2) != 0)
     {
-        food_temp->x = rand() % 52 + 2;
+        tem_food->x = rand() % 52 + 2;
     }
-    food_temp->y = rand() % 24 + 1;
-    q = head;
-    while (q->next == NULL)
+    tem_food->y = rand() % 24 + 1;  
+    ss=head;  
+    while (ss->next == NULL)
     {
-        if (q->x == food_temp->x && q->y == food_temp->y)
+        if (ss->x == tem_food->x && ss->y == tem_food->y)
         {
-            free(food_temp);
+            free(tem_food);
             createfood();
         }
-        q = q->next;
+        ss = ss->next;
     }
-    gotoxy(food_temp->x, food_temp->y);
-    food = food_temp;
+    gotoxy(tem_food->x, tem_food->y);
+    food = tem_food;
     color(12);
     printf("бя");
 }

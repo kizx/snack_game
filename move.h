@@ -4,10 +4,33 @@
 #define L 3
 #define R 4
 
+void isfood()
+{
+    snack *tail;
+    if(head->x==food->x && head->y==food->y)
+    {
+        gotoxy(head->x,head->y);
+        color(14);
+        printf("¡ô");
+        createfood();
+        gotoxy(60,26);
+    }        
+    else
+    {
+        tail=print_snack(head);
+        gotoxy(tail->x,tail->y);
+        color(3);
+        printf("¡ö");
+        free(tail->next);
+        tail->next=NULL;
+        gotoxy(60,26);
+    }
+}
+
 
 void snack_move()
-{
-    snack *next_head,*tail;
+{    
+    snack *next_head;
     next_head=(snack*)malloc(sizeof(snack));
     if(status==U)
     {
@@ -15,23 +38,7 @@ void snack_move()
         next_head->y=head->y-1;
         next_head->next=head;
         head=next_head;
-        q=head;
-        if(next_head->x==food->x && next_head->y==food->y)
-        {
-            gotoxy(head->x,head->y);
-            color(14);
-            printf("¡ô");
-            createfood();
-        }        
-        else
-        {
-            tail=print_snack(head);
-            gotoxy(tail->x,tail->y);
-            color(3);
-            printf("¡ö");
-            free(tail->next);
-            tail->next=NULL;
-        }
+        isfood();
     }
     if(status==D)
     {
@@ -39,23 +46,7 @@ void snack_move()
         next_head->y=head->y+1;
         next_head->next=head;
         head=next_head;
-        q=head;
-        if(next_head->x==food->x && next_head->y==food->y)    
-        {
-            gotoxy(head->x,head->y);
-            color(14);
-            printf("¡ô");
-            createfood();
-        }        
-        else
-        {
-            tail=print_snack(head);
-            gotoxy(tail->x,tail->y);
-            color(3);
-            printf("¡ö");
-            free(tail->next);
-            tail->next=NULL;
-        }
+        isfood();
     }
     if(status==L)
     {
@@ -63,23 +54,7 @@ void snack_move()
         next_head->y=head->y;
         next_head->next=head;
         head=next_head;
-        q=head;
-        if(next_head->x==food->x && next_head->y==food->y)
-        {
-            gotoxy(head->x,head->y);
-            color(14);
-            printf("¡ô");
-            createfood();
-        }        
-        else
-        {
-            tail=print_snack(head);
-            gotoxy(tail->x,tail->y);
-            color(3);
-            printf("¡ö");
-            free(tail->next);
-            tail->next=NULL;            
-        }
+        isfood();
     }
     if(status==R)
     {
@@ -87,23 +62,7 @@ void snack_move()
         next_head->y=head->y;
         next_head->next=head;
         head=next_head;
-        q=head;
-        if(next_head->x==food->x && next_head->y==food->y)
-        {
-            gotoxy(head->x,head->y);
-            color(14);
-            printf("¡ô");
-            createfood();
-        }        
-        else
-        {
-            tail=print_snack(head);
-            gotoxy(tail->x,tail->y);
-            color(3);
-            printf("¡ö");
-            free(tail->next);
-            tail->next=NULL;
-        }
+        isfood();
     }
 }
 
