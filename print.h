@@ -13,7 +13,7 @@ typedef struct snack
 snack *q;
 snack *head;
 snack *food;
-int status,sleeptime=200;
+int status, sleeptime = 400;
 
 void gotoxy(int x, int y)
 {
@@ -58,15 +58,18 @@ void createMap()
     }
 }
 
-void print_snack(snack *qs)
+snack *print_snack(snack *ss)
 {
-    while(qs->next->next!=NULL)
+    snack *sstemp;
+    while (ss->next != NULL)
     {
-    gotoxy(qs->x,qs->y);
-    color(14);
-    printf("¡ô");
-    qs=qs->next;
+        gotoxy(ss->x, ss->y);
+        color(14);
+        printf("¡ô");
+        sstemp = ss;
+        ss = ss->next;
     }
+    return sstemp;
 }
 
 void initsnack()
@@ -75,41 +78,41 @@ void initsnack()
     int i;
     tail = (snack *)malloc(sizeof(snack));
     tail->x = 24;
-    tail->y = 5;
+    tail->y = 15;
     tail->next = NULL;
-    for (i = 1; i <= 3; i++)
+    for (i = 1; i <= 4; i++)
     {
         head = (snack *)malloc(sizeof(snack));
         head->next = tail;
         head->x = 24 + 2 * i;
-        head->y = 5;
+        head->y = 15;
         tail = head;
     }
-    print_snack(head);
+    print_snack(tail);
 }
 
 void createfood()
 {
-    snack *food_1;
-    srand((unsigned)time(NULL));
-    food_1 = (snack *)malloc(sizeof(snack));
-    while ((food_1->x % 2) != 0)
+    snack *food_temp;    
+    food_temp = (snack *)malloc(sizeof(snack));
+    food_temp->x = rand() % 52 + 2;
+    while ((food_temp->x % 2) != 0)
     {
-        food_1->x = rand() % 52 + 2;
+        food_temp->x = rand() % 52 + 2;
     }
-    food_1->y = rand() % 24 + 1;
+    food_temp->y = rand() % 24 + 1;
     q = head;
     while (q->next == NULL)
     {
-        if (q->x == food_1->x && q->y == food_1->y)
+        if (q->x == food_temp->x && q->y == food_temp->y)
         {
-            free(food_1);
+            free(food_temp);
             createfood();
         }
         q = q->next;
     }
-    gotoxy(food_1->x, food_1->y);
-    food = food_1;
+    gotoxy(food_temp->x, food_temp->y);
+    food = food_temp;
     color(12);
-    printf("55");
+    printf("¡ï");
 }

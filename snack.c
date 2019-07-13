@@ -4,6 +4,7 @@ int main()
 {
     createMap();
     initsnack();
+    srand((unsigned)time(NULL));
     createfood();
     key();
     
