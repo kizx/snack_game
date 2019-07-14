@@ -4,7 +4,7 @@
 #define L 3
 #define R 4
 
-int score = 0;  //得分
+int score;      //得分
 int status = R; //蛇移动的方向，初始为右
 
 void isfood()
@@ -103,6 +103,7 @@ void key()
     /* 判断键盘按键 */
     status = R;          //初始向右移动
     int sleeptime = 200; //间隔时间
+    score = 0;
     gotoxy(60, 1);
     color(2);
     printf("得分：%d", score); //打印初始分
