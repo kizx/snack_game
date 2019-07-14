@@ -10,6 +10,7 @@ int main()
     
 
     gotoxy(60,26);
-    system("pause");
+    //system("pause");
+    getch();
     return 0;
 }

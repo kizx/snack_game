@@ -10,10 +10,10 @@ typedef struct snack
     int y;
     struct snack *next;
 } snack;
-snack *q;
 snack *head;
 snack *food;
-int status, sleeptime = 400;
+
+int status, sleeptime = 200;
 
 void gotoxy(int x, int y)
 {
@@ -93,15 +93,15 @@ void initsnack()
 
 void createfood()
 {
-    snack *tem_food,*ss;    
+    snack *tem_food, *ss;
     tem_food = (snack *)malloc(sizeof(snack));
     tem_food->x = rand() % 52 + 2;
     while ((tem_food->x % 2) != 0)
     {
         tem_food->x = rand() % 52 + 2;
     }
-    tem_food->y = rand() % 24 + 1;  
-    ss=head;  
+    tem_food->y = rand() % 24 + 1;
+    ss = head;
     while (ss->next == NULL)
     {
         if (ss->x == tem_food->x && ss->y == tem_food->y)
